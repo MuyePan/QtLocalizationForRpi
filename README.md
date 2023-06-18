@@ -27,7 +27,7 @@ Then on **Run** change **working directory:** to **/usr/local/bin**.
 
 You can turn off **appHelloWorld_lrelease**, **appHelloWorld_update** and **Override deployment data from build system** to accelerate debugging.
 
-Finally Modify main.cpp. This is just a simple demo of initilization and you should do more than this in real project.
+Finally Modify main.cpp. This is just a simple demo of initilization and you should do more in real project.
 ```
 QTranslator *tr = new QTranslator;
 tr->load("appHelloWorld_en.qm");
