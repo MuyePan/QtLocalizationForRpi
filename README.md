@@ -84,6 +84,13 @@ QUrl AssetUrlHandler::intercept(const QUrl &path, DataType type) {
     return path;
 }
 ```
+
+main.cpp
+```
+    QQmlApplicationEngine engine;
+    engine.addUrlInterceptor(new AssetUrlHandler({"en"}));
+```
+
 qml file
 ```
 Image {
@@ -93,6 +100,5 @@ Image {
 }
 ```
 
-## Localize code
 
 
