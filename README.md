@@ -35,8 +35,55 @@ tr->load("appHelloWorld_en.qm");
 QGuiApplication app(argc, argv);
 app.installTranslator(tr);
 ```
+
 ## Localize asset
 Subclass **QQmlAbstractUrlInterceptor** and implement **QUrl intercept(const QUrl& path, QQmlAbstractUrlInterceptor::DataType type)**
+```
+#include "asseturlhandler.h"
+
+#include <QDir>
+#include <QGuiApplication>
+#include <QUrl>
+
+AssetUrlHandler::AssetUrlHandler(const QList<QString> &suffixes) {
+    QDir::setSearchPaths(
+        "asset",
+        {":/Assets", QGuiApplication::applicationDirPath() + "/Assets/Images"});
+    m_suffixes = suffixes;
+}
+
+QUrl AssetUrlHandler::intercept(const QUrl &path, DataType type) {
+    if (type == QQmlAbstractUrlInterceptor::DataType::QmldirFile) {
+        return path;
+    }
+
+    auto scheme = path.scheme();
+    if (scheme == QLatin1String("asset")) {
+        QString fileNameFull = path.fileName();
+        QString fileExt = fileNameFull.mid(fileNameFull.lastIndexOf(".") + 1);
+        QString fileName = fileNameFull.mid(0, fileNameFull.lastIndexOf("."));
+
+        for (auto &suffix : m_suffixes) {
+            QFileInfo fi("asset:" + fileName + "_" + suffix + "." + fileExt);
+            if (fi.exists()) {
+                if (fi.filePath().startsWith(":/")) {
+                    return QUrl("qrc" + fi.filePath());
+                }
+                return QUrl::fromLocalFile(fi.filePath());
+            }
+        }
+
+        QFileInfo fi("asset:" + fileNameFull);
+        if (fi.exists()) {
+            if (fi.filePath().startsWith(":/")) {
+                return QUrl("qrc" + fi.filePath());
+            }
+            return QUrl::fromLocalFile(fi.filePath());
+        }
+    }
+    return path;
+}
+```
 
 ## Localize code
 
