@@ -84,6 +84,14 @@ QUrl AssetUrlHandler::intercept(const QUrl &path, DataType type) {
     return path;
 }
 ```
+qml file
+```
+Image {
+    id: logo
+    source: "asset:logo.png"
+    anchors.centerIn: parent
+}
+```
 
 ## Localize code
 
