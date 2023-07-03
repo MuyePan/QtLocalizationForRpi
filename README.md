@@ -2,6 +2,7 @@
 This page shows how to localize Qt Widgets/Quick Applications running on rpi.
 Click the follow image to view this tutorial on Youtube.
 
+## Localize text
 Add LinguistTools component to find_package in CMakeLists.txt.
 
 ![image](https://github.com/MuyePan/QtLocalizationForRpi/assets/136073506/2665930f-349a-478c-aaa0-0aa7bb220264)
@@ -34,6 +35,9 @@ tr->load("appHelloWorld_en.qm");
 QGuiApplication app(argc, argv);
 app.installTranslator(tr);
 ```
+## Localize asset
+Subclass **QQmlAbstractUrlInterceptor** and implement **QUrl intercept(const QUrl& path, QQmlAbstractUrlInterceptor::DataType type)**
 
+## Localize code
 
 
