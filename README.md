@@ -26,7 +26,7 @@ Then on **Run** change **working directory:** to **/usr/local/bin**.
 
 ![image](https://github.com/MuyePan/QtLocalizationForRpi/assets/136073506/32ef52ec-d639-4d8a-a34e-e081912bf6cc)
 
-You can turn off **appHelloWorld_lrelease**, **appHelloWorld_update** and **Override deployment data from build system** to accelerate debugging.
+You can turn off **appHelloWorld_lrelease**, **appHelloWorld_update** and **Override deployment data from build system** to speed up debugging.
 
 Finally Modify main.cpp. This is just a simple demo of initilization and you should do more in real project.
 ```
