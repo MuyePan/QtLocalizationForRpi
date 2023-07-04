@@ -13,7 +13,7 @@ Add LinguistTools component to find_package in CMakeLists.txt.
 
 Add following code to CMakeLists.txt.
 ```
-qt_add_translations(appHelloWorld TS_FILES appHelloWorld_en.ts appHelloWorld_fr.ts)
+qt_add_translations(appHelloWorld TS_FILES string_en.ts string_fr.ts)
 ```
 
 Goto **Project** select **Build**. On **Build Steps** check **appHelloWorld_lrelease** and **appHelloWorld_update**.
