@@ -4,9 +4,9 @@ Click the follow image to view this tutorial on Youtube.
 
 [![Youtube video link](https://i.ytimg.com/vi/JtTtzYZ_Nk0/hqdefault.jpg)](//youtu.be/JtTtzYZ_Nk0 "Youtube Video")
 
--- Localization https://youtu.be/JtTtzYZ_Nk0
--- Cross Compilation https://youtu.be/8kpHgNKPooc
--- Remote Debugging https://youtu.be/QWz-4R4kMIo
+- Localization https://youtu.be/JtTtzYZ_Nk0
+- Cross Compilation https://youtu.be/8kpHgNKPooc
+- Remote Debugging https://youtu.be/QWz-4R4kMIo
 
 ## Localize text
 Build and install qttools module.
