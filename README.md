@@ -35,7 +35,7 @@ You can turn off **appHelloWorld_lrelease**, **appHelloWorld_update** and **Over
 Finally Modify main.cpp. This is just a simple demo of initilization and you should do more in real project.
 ```
 QTranslator *tr = new QTranslator;
-tr->load("appHelloWorld_en.qm");
+tr->load("string_en.qm");
 QGuiApplication app(argc, argv);
 app.installTranslator(tr);
 ```
@@ -49,10 +49,14 @@ Subclass **QQmlAbstractUrlInterceptor** and implement **QUrl intercept(const QUr
 #include <QGuiApplication>
 #include <QUrl>
 
+#define ASSET_URL_SCHEME    "asset"
+
 AssetUrlHandler::AssetUrlHandler(const QList<QString> &suffixes) {
-    QDir::setSearchPaths(
-        "asset",
-        {":/assets", QGuiApplication::applicationDirPath() + "/assets/images"});
+    QList<QString> paths;
+    paths.append(":" + QGuiApplication::applicationName().mid(3) + "/assets/images");
+    paths.append(QGuiApplication::applicationDirPath() + "/assets/images");
+
+    QDir::setSearchPaths(ASSET_URL_SCHEME, paths);
     m_suffixes = suffixes;
 }
 
@@ -62,13 +66,13 @@ QUrl AssetUrlHandler::intercept(const QUrl &path, DataType type) {
     }
 
     auto scheme = path.scheme();
-    if (scheme == QLatin1String("asset")) {
+    if (scheme == QLatin1String(ASSET_URL_SCHEME)) {
         QString fileNameFull = path.fileName();
         QString fileExt = fileNameFull.mid(fileNameFull.lastIndexOf(".") + 1);
         QString fileName = fileNameFull.mid(0, fileNameFull.lastIndexOf("."));
 
         for (auto &suffix : m_suffixes) {
-            QFileInfo fi("asset:" + fileName + "_" + suffix + "." + fileExt);
+            QFileInfo fi(QString(ASSET_URL_SCHEME) + ":" + fileName + "_" + suffix + "." + fileExt);
             if (fi.exists()) {
                 if (fi.filePath().startsWith(":/")) {
                     return QUrl("qrc" + fi.filePath());
@@ -77,7 +81,7 @@ QUrl AssetUrlHandler::intercept(const QUrl &path, DataType type) {
             }
         }
 
-        QFileInfo fi("asset:" + fileNameFull);
+        QFileInfo fi(QString(ASSET_URL_SCHEME) + ":" + fileNameFull);
         if (fi.exists()) {
             if (fi.filePath().startsWith(":/")) {
                 return QUrl("qrc" + fi.filePath());
