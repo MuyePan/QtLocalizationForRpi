@@ -2,6 +2,10 @@
 This page shows how to localize Qt Widgets/Quick Applications running on rpi.
 Click the follow image to view this tutorial on Youtube.
 
+[![Youtube video link](https://i.ytimg.com/vi/JtTtzYZ_Nk0/hqdefault.jpg)](//youtu.be/JtTtzYZ_Nk0 "Youtube Video")
+
+https://youtu.be/JtTtzYZ_Nk0
+
 ## Localize text
 Build and install qttools module.
 
