@@ -52,7 +52,7 @@ Subclass **QQmlAbstractUrlInterceptor** and implement **QUrl intercept(const QUr
 AssetUrlHandler::AssetUrlHandler(const QList<QString> &suffixes) {
     QDir::setSearchPaths(
         "asset",
-        {":/Assets", QGuiApplication::applicationDirPath() + "/Assets/Images"});
+        {":/assets", QGuiApplication::applicationDirPath() + "/assets/images"});
     m_suffixes = suffixes;
 }
 
